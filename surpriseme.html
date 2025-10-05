@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Surprise Me</title>
+</head>
+<body style="font-family:sans-serif; text-align:center; margin-top:60px;">
+  <h1>Enter Password</h1>
+  <input type="password" id="pass" placeholder="Enter password">
+  <button onclick="checkPass()">Unlock</button>
+  <p id="msg"></p>
+
+  <script>
+    // SHA-256 hash of "060825"
+	const correctHash = "e32d277b8c594714513d334841640344413b1ac3adc2fa2c12eeafa6adab3e48"
+	
+	async function checkPass() {
+	  const entered = document.getElementById('pass').value;
+	  const encoder =  new TextEncoder();
+	  const data = encoder.encode(entered);
+	  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+	  const hashArray = Array.from(new Uint8Array(hashBuffer));
+	  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+	  
+      if(hashHex === correctHash){
+        window.location.href='valentine.html';
+      } else {
+        document.getElementById('msg').innerText = "❌ Wrong password.";
+      }
+    }
+  </script>
+</body>
+</html>

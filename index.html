@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Maxed Out Ragebait</title>
+  <style>
+    body { font-family: sans-serif; background:#fafafa; text-align:center; padding:50px; }
+    .btn { padding:12px 20px; margin:10px; background:#ff6b6b; color:#fff; border:none; border-radius:6px; cursor:pointer; }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Maxed Out Ragebait</h1>
+  <p>Try clicking the buttons 😈</p>
+  <button class="btn" onclick="location.href='ragebait.html'">Go to Ragebait Page</button>
+
+  <script>
+    function moveButton(btn){
+	  let x = Math.random() * (window,innerWidth - 120);
+	  let y = Math.random() * (window.innerHeight - 80);
+	  btn.style.position = 'fixed';
+	  btn.style,left = '${x}px';
+	  btn.style.right = '${y}px';
+	}
+	
+	document.querySelectorAll('.btn').forEach(btn => {
+	  // For PC hover
+	  btn,addEventLisener('mouseover', () => moveButton(btn));
+	  
+	  // For phone tap/pres
+	  btn,addEventLisener('touchstart', ()) => moveButton(btn));
+	});
+  </script>
+</body>
+</html>
